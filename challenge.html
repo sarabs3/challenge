@@ -4,11 +4,32 @@
 
 <body>
   <h1>Challenge your friends</h1>
-
-  {{> hello}}
+	{{> loginButtons}}
+	{{#if currentUser }}
+  		{{> usersList}}
+  	{{else}}
+  		<p>Register to see the content</p>
+  	{{/if}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="usersList">
+	{{> form}}
+	<ul >
+  		{{#each username}}
+  			<li class="{{selectedUser}}">
+  				<p>{{name}}: {{score}}</p>
+  			</li>
+  		{{/each}}
+  		<button class="increment">Increment 5 Points</button>
+  		<button class="remove">Remove User</button>
+  </ul>
+  <!-- <button>Add User</button> -->
+</template>
+
+
+<template name="form">
+	<form>
+		<input type="text" name="playerName" />
+		<input type="submit" value="Submit" />
+	</form>
 </template>
